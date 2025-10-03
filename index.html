@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Invitación - Cumpleaños de Violeta</title>
+
+  <!-- Favicon Hello Kitty -->
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/en/d/d2/Hello_Kitty_character_portrait.png">
+
+  <!-- Metadatos para compartir en redes (Open Graph / WhatsApp / Facebook / Twitter) -->
+  <meta property="og:title" content="🎀 Cumpleaños de Violeta Mesa 🎂"/>
+  <meta property="og:description" content="Estás invitad@ al cumpleaños de Violeta 🎉 Sábado, 11 de octubre de 2025 a las 4:00 p.m. en la casa de Jané."/>
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/d/d2/Hello_Kitty_character_portrait.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://tuusuario.github.io/invitacion-violeta/"/>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🎀 Cumpleaños de Violeta Mesa 🎂">
+  <meta name="twitter:description" content="Fiesta temática Hello Kitty · 11 de octubre · 4:00 p.m. · Casa de Jané">
+  <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/en/d/d2/Hello_Kitty_character_portrait.png">
+
+  <style>
+    body{
+      margin:0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background:linear-gradient(135deg,#ffe6f2,#ffd6ec,#fff0f6);
+      color:#5b0a3d;
+      text-align:center;
+    }
+    h1{
+      font-size:34px;
+      color:#d63384;
+      margin-top:30px;
+      text-shadow:2px 2px #ffcce5;
+    }
+    p.lead{
+      font-size:20px;
+      font-weight:bold;
+      margin-bottom:25px;
+      color:#a80d57;
+    }
+    .card{
+      display:inline-block;
+      background:#fff;
+      padding:20px;
+      margin:12px;
+      border-radius:18px;
+      border:3px solid #ff99cc;
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      text-align:center;
+      width:260px;
+    }
+    .card h2{
+      color:#d63384;
+      margin-bottom:10px;
+    }
+    .small{
+      font-size:16px;
+      color:#6b2147;
+      margin:6px 0;
+    }
+    .btn{
+      display:inline-block;
+      margin-top:10px;
+      padding:12px 20px;
+      background:#ff99cc;
+      border-radius:14px;
+      color:#fff;
+      font-weight:bold;
+      text-decoration:none;
+      font-size:16px;
+      box-shadow:0 3px 6px rgba(0,0,0,0.3);
+    }
+    .countdown{display:flex;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .item{background:linear-gradient(135deg,#ff99cc,#ffccff);padding:12px 16px;border-radius:14px;min-width:70px;box-shadow:0 3px 6px rgba(0,0,0,0.2)}
+    .item b{display:block;font-size:22px;color:white}
+    footer{margin:25px 0;font-weight:bold;color:#a80d57;font-size:16px;}
+    canvas.decor{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
+
+    /* Responsive para móviles */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 26px;
+      }
+      p.lead {
+        font-size: 16px;
+      }
+      .card {
+        width: 90%;
+        max-width: 350px;
+        margin: 10px auto;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        margin: 15px auto 0;
+        font-size: 18px;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="decor"></canvas>
+
+  <h1>¡Estás invitad@ al cumpleaños de Violeta Mesa! 🎀</h1>
+  <p class="lead">Sábado, 11 de octubre de 2025 · 4:00 p.m.<br>📍 En la casa de Jané</p>
+
+  <div class="card">
+    <h2>🎂 Fiesta Hello Kitty</h2>
+    <p class="small">📍 Lugar: Casa de Jané</p>
+    <p class="small">📅 Fecha: 11 de octubre de 2025</p>
+    <p class="small">⏰ Hora: 4:00 p.m.</p>
+  </div>
+
+  <div class="card">
+    <h2>⏳ Cuenta regresiva</h2>
+    <div class="countdown" id="countdown">
+      <div class="item"><span>Días</span><b id="days">--</b></div>
+      <div class="item"><span>Horas</span><b id="hours">--</b></div>
+      <div class="item"><span>Min</span><b id="mins">--</b></div>
+      <div class="item"><span>Seg</span><b id="secs">--</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📲 Confirmación</h2>
+    <p class="small">Por favor confirma tu asistencia vía WhatsApp:</p>
+    <a id="whatsapp-btn" class="btn" href="#" target="_blank">Confirmar por WhatsApp</a>
+  </div>
+
+  <footer>¡No faltes! Violeta te espera con mucha alegría 💖✨🎈</footer>
+
+  <script>
+    const EVENT_DATE_ISO = '2025-10-11T16:00:00-05:00';
+    const WHATSAPP_PHONE = '573013596980'; // Número correcto en formato internacional
+
+    // WhatsApp link
+    const waBtn = document.getElementById('whatsapp-btn');
+    const waText = encodeURIComponent('¡Hola! Confirmo mi asistencia al cumpleaños de Violeta el 11 de octubre a las 4:00 p.m.');
+    waBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${waText}`;
+
+    // countdown
+    function updateCountdown(){
+      const target = new Date(EVENT_DATE_ISO);
+      const now = new Date();
+      let diff = target - now;
+      if(diff<=0){document.getElementById('days').textContent='0';document.getElementById('hours').textContent='0';document.getElementById('mins').textContent='0';document.getElementById('secs').textContent='0';return}
+      const s=Math.floor(diff/1000);
+      const days=Math.floor(s/86400);
+      const hours=Math.floor((s%86400)/3600);
+      const mins=Math.floor((s%3600)/60);
+      const secs=s%60;
+      document.getElementById('days').textContent=days;
+      document.getElementById('hours').textContent=hours;
+      document.getElementById('mins').textContent=mins;
+      document.getElementById('secs').textContent=secs;
+    }
+    updateCountdown();setInterval(updateCountdown,1000);
+
+    // globos y corazones animados
+    const canvas=document.querySelector('.decor');
+    const ctx=canvas.getContext('2d');
+    let W,H;function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}resize();window.addEventListener('resize',resize);
+    const shapes=[];
+    for(let i=0;i<60;i++){
+      shapes.push({x:Math.random()*W,y:H+Math.random()*H,size:20+Math.random()*20,speed:1+Math.random()*2,type:Math.random()>0.5?'heart':'balloon',color:`hsl(${Math.random()*360},90%,70%)`});
+    }
+    function drawHeart(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x,y);ctx.bezierCurveTo(x-s/2,y-s/2,x-s,y+s/3,x,y+s);ctx.bezierCurveTo(x+s,y+s/3,x+s/2,y-s/2,x,y);ctx.fill();}
+    function drawBalloon(x,y,s,color){ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(x,y,s*0.6,s,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle=color;ctx.beginPath();ctx.moveTo(x,y+s);ctx.lineTo(x,y+s+15);ctx.stroke();}
+    function animate(){ctx.clearRect(0,0,W,H);for(const sh of shapes){if(sh.type==='heart'){drawHeart(sh.x,sh.y,sh.size,sh.color);}else{drawBalloon(sh.x,sh.y,sh.size,sh.color);}sh.y-=sh.speed;if(sh.y<-40){sh.y=H+40;sh.x=Math.random()*W;}}requestAnimationFrame(animate);}animate();
+  </script>
+</body>
+</html>
