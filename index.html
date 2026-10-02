@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Invitación - Cumpleaños de Violeta</title>
 
-  <!-- Favicon Hello Kitty -->
   <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/en/d/d2/Hello_Kitty_character_portrait.png">
 
-  <!-- Metadatos para compartir en redes (Open Graph / WhatsApp / Facebook / Twitter) -->
+
   <meta property="og:title" content="🎀 Cumpleaños de Violeta Mesa 🎂"/>
   <meta property="og:description" content="Estás invitad@ al cumpleaños de Violeta 🎉 Sábado, 11 de octubre de 2025 a las 4:00 p.m. en la casa de Jané."/>
   <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/d/d2/Hello_Kitty_character_portrait.png"/>
@@ -78,7 +77,7 @@
     footer{margin:25px 0;font-weight:bold;color:#a80d57;font-size:16px;}
     canvas.decor{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
 
-    /* Responsive para móviles */
+
     @media (max-width: 600px) {
       h1 {
         font-size: 26px;
@@ -137,12 +136,11 @@
     const EVENT_DATE_ISO = '2025-10-11T16:00:00-05:00';
     const WHATSAPP_PHONE = '573013596980'; // Número correcto en formato internacional
 
-    // WhatsApp link
+
     const waBtn = document.getElementById('whatsapp-btn');
     const waText = encodeURIComponent('¡Hola! Confirmo mi asistencia al cumpleaños de Violeta el 11 de octubre a las 4:00 p.m.');
     waBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${waText}`;
 
-    // countdown
     function updateCountdown(){
       const target = new Date(EVENT_DATE_ISO);
       const now = new Date();
@@ -160,7 +158,6 @@
     }
     updateCountdown();setInterval(updateCountdown,1000);
 
-    // globos y corazones animados
     const canvas=document.querySelector('.decor');
     const ctx=canvas.getContext('2d');
     let W,H;function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}resize();window.addEventListener('resize',resize);
